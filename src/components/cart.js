@@ -3,23 +3,27 @@ import ItemList from "./itemList";
 import { clearCart } from "../utils/cartSlice";
 
 const Cart = () => {
-  const cartItems = useSelector((store) => {
-    console.log("Cart state:", store.cart); // 🔍 Debug log
-    return store.cart.items;
-  });
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch();
+  // Redux store me items ab object hai, convert to array for ItemList
+  const cartItemsObj = useSelector((store) => store.cart.items);
+  const cartItems = Object.values(cartItemsObj);
 
-const handleClearCart = () => {
+  const handleClearCart = () => {
     dispatch(clearCart());
-};
+  };
+
   return (
     <div className="py-10">
       <div className="w-6/12 m-auto p-12 bg-gray-100">
         <ItemList items={cartItems} />
+        
         {cartItems.length !== 0 ? (
           <div className="p-10 m-10 flex justify-between">
-            <button className="p-2 m-2 px-4 bg-green-600 text-white cursor-pointer" onClick={handleClearCart}>
+            <button
+              className="p-2 m-2 px-4 bg-green-600 text-white cursor-pointer"
+              onClick={handleClearCart}
+            >
               Clear Cart
             </button>
             <button className="p-2 m-2 px-4 bg-green-600 text-white cursor-pointer">

@@ -15,12 +15,12 @@ class About extends Component {
   render() {
     // console.log("Parent render !");
     return (
-      <>
+      <div className="p-24">
         <h1>about us</h1>
         <h1>swiggy #</h1>
         {/* <User name={"fashion khan"} /> */}
         <UserClass name={"rusmeen khan"} location={"gurgoan haryana"} />
-      </>
+      </div>
     );
   }
 }

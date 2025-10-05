@@ -49,9 +49,9 @@ const RestaurantMenu = () => {
     );
   // console.log(categories);
   return (
-    <div className="w-6/12 m-auto py-10">
+    <div className="w-6/12 m-auto py-10 mt-24">
       <h1 className="ml-6 text-3xl font-bold truncate">{name}</h1>
-      <div className=" m-4 p-4 border border-solid black 1px rounded-lg shadow-2xl">
+      <div className="m-4 p-4 border border-solid black 1px rounded-lg shadow-2xl">
         <h3 className="text-lg font-bold">
           Rating {avgRating}.({totalRatingsString}) - {costForTwoMessage}
         </h3>

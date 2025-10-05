@@ -24,7 +24,7 @@ const Contact = () => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
   return (
-    <div className="max-w-xl mx-auto p-4 text-xl font-sans">
+    <div className="max-w-xl mx-auto p-4 pt-24 text-xl font-sans">
       <h1 className="text-3xl mb-6 text-center font-bold">
         Frequently Asked Questions{" "}
       </h1>

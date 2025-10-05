@@ -15,23 +15,13 @@ import AppStore from "./utils/appStore";
 const InstaMart = lazy(() => import("./components/grocery"));
 
 const AppLayout = () => {
-  // const [userName, setUserName] = useState();
-
-  // useEffect(() => {
-  //   const data = {
-  //     name: "fashion khan",
-  //   };
-  //   setUserName(data.name);
-  // }, []);
 
   return (
-    // <UserContext.Provider value={{ loggedInUser: userName }}>
     <Provider store={AppStore}>
       <div className="app">
         <Header />
         <Outlet />
       </div>
-      {/* // </UserContext.Provider> */}
     </Provider>
   );
 };

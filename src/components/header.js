@@ -1,58 +1,61 @@
-import { LOGO_URL } from "../utils/constants";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-// import useOnline from "../utils/useOnlineStatus";
 import { useSelector } from "react-redux";
-// import userContext from "../utils/userContext";
+import { LOGO_URL } from "../utils/constants";
+import { IoFastFoodOutline } from "react-icons/io5";
 
 const Header = () => {
-  const [LoginBtn, setLoginBtn] = useState("login");
+  const [loginBtn, setLoginBtn] = useState("Login");
 
-  const cartItems = useSelector((store) => store.cart.items);
+  const totalItems = useSelector((store) =>
+    Object.values(store.cart.items).reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    )
+  );
 
-  // const istoOnline = useOnline();
-
-  // const {loggedInUser} = useContext(userContext);
-  // if (!istoOnline) {
-  //   return <h1>No Internet !</h1>;
-  // }
   return (
-    <div className="flex justify-between bg-fuchsia-50">
-      <div className="logo-container">
-        <img className="w-26" src={LOGO_URL}></img>
-      </div>
-      <div className="flex items-center ">
-        <ul className="flex m-4 p-4">
-          {/* <li className="px-4">Online : {istoOnline ? "✅" : "❌"}</li> */}
-          <li className="px-4 font-bold text-md">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="px-4 font-bold text-md">
-            <Link to="/about">About Us</Link>
-          </li>
-          <li className="px-4 font-bold text-md">
-            <Link to="/contact">Contact Us</Link>
-          </li>
-          <li className="px-4 font-bold text-md">
-            <Link to="/grocery">Grocery</Link>
-          </li>
-          <li className="px-4 font-bold text-lg">
-            <Link to="/cart">Cart - {cartItems.length} </Link>
-          </li>
+    <div className="fixed top-0 left-0 w-full z-20 border-b-orange-100 bg-white shadow-md">
+      <div className="flex justify-between items-center h-20 px-8">
+        <div className="logo-container flex items-center gap-2">
+          <Link to="/" className="flex items-center">
+            <div className="text-6xl text-orange-500">
+              <IoFastFoodOutline />
+            </div>
+            <span className="text-2xl font-bold text-orange-500 ml-2">
+              Just4Food
+            </span>
+          </Link>
+        </div>
+
+        <div className="flex items-center space-x-6">
+          <ul className="flex space-x-6">
+            <li className="font-bold text-md hover:text-orange-500">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="font-bold text-md  hover:text-orange-500">
+              <Link to="/about">About</Link>
+            </li>
+            <li className="font-bold text-md  hover:text-orange-500">
+              <Link to="/contact">Contact</Link>
+            </li>
+            <li className="font-bold text-md  hover:text-orange-500">
+              <Link to="/grocery">Grocery</Link>
+            </li>
+            <li className="font-bold text-md  hover:text-orange-500">
+              <Link to="/cart">Cart - {totalItems}</Link>
+            </li>
+          </ul>
+
           <button
-            className="px-4 font-bold text-md"
-            onClick={() => {
-              LoginBtn === "login"
-                ? setLoginBtn("logout")
-                : setLoginBtn("login");
-            }}
+            className="px-4 py-2 bg-orange-500 hover:bg-orange-700 cursor-pointer text-white font-semibold rounded-lg"
+            onClick={() =>
+              setLoginBtn(loginBtn === "Login" ? "Logout" : "Login")
+            }
           >
-            {LoginBtn}
+            {loginBtn}
           </button>
-          {/* <li className="px-4">
-            <Link>{loggedInUser}</Link> */}
-          {/* </li> */}
-        </ul>
+        </div>
       </div>
     </div>
   );

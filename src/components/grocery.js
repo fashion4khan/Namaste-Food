@@ -1,6 +1,6 @@
 const InstaMart = () => {
     return (
-        <h1>This is our grocery store and there are many more components are comes !</h1>
+        <h1 className="p-24 text-6xl">This is our grocery store and we are working on it !</h1>
     );
 };
 
