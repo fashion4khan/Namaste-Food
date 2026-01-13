@@ -11,7 +11,7 @@ import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 // import UserContext from "./utils/userContext";
 import { Provider } from "react-redux";
 import AppStore from "./utils/appStore";
-import Login from "./components/login";
+import Login from "./components/Login";
 
 const InstaMart = lazy(() => import("./components/grocery"));
 
