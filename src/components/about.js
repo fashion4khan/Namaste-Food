@@ -1,39 +1,19 @@
-// import User from "./User";
-import UserClass from "./UserClass";
 import React, { Component } from "react";
+import UserClass from "./UserClass";
 
 class About extends Component {
-  constructor(props) {
-    super(props);
-
-    // console.log("Parent constructor !");
-  }
-
-  componentDidMount() {
-    // console.log("Parent component did mount !")
-  }
   render() {
-    // console.log("Parent render !");
     return (
-      <div className="p-24">
-        <h1>about us</h1>
-        <h1>swiggy #</h1>
-        {/* <User name={"fashion khan"} /> */}
-        <UserClass name={"rusmeen khan"} location={"gurgoan haryana"} />
+      <div className="p-24 bg-gray-50 min-h-screen flex flex-col items-center justify-center text-center">
+        <h1 className="text-4xl font-bold mb-4">About Us</h1>
+        <p className="text-lg mb-6">
+          Welcome to Just4Food! We are dedicated to delivering delicious meals right to your doorstep with speed and convenience.
+        </p>
+        <h2 className="text-2xl font-semibold mb-4">Our Team</h2>
+        <UserClass name="Rusmeen Khan" location="Gurgaon, Haryana" />
       </div>
     );
   }
 }
-
-// const About = () => {
-//     return (
-//         <>
-//             <h1>about us</h1>
-//             <h1>swiggy #</h1>
-//             <User name ={"fashion khan"}/>
-//             <UserClass name={"rusmeen khan"} location={"gurgoan haryana"}/>
-//         </>
-//     );
-// };
 
 export default About;

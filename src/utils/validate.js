@@ -1,28 +1,23 @@
-export const FormValidation = (email, password) => {
-  const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  const isEmailValid = regexEmail.test(email);
-  const isPasswordValid = passwordRegex.test(password);
+export const FormValidation = (mobile) => {
+  const mobileRegex = /^[6-9]\d{9}$/;
 
-  if (!isEmailValid) return "Email is Invalid :";
-  if (!isPasswordValid) return "Password is Invalid :";
+  if (!mobile) return "Mobile number is required :";
+  if (!mobileRegex.test(mobile)) return "Mobile number is invalid :";
 
   return null;
 };
-export const FormValidationWithName = (name, email, password) => {
+export const FormValidationWithName = (name, email, mobile) => {
   const nameRegex = /^[a-zA-Z]+([ '-][a-zA-Z]+)*$/;
   const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const mobileRegex = /^[6-9]\d{9}$/;
 
   const isNameValid = nameRegex.test(name);
   const isEmailValid = regexEmail.test(email);
-  const isPasswordValid = passwordRegex.test(password);
+  const isMobileValid = mobileRegex.test(mobile);
 
-  if (!isNameValid) return "name is Invalid :";
+  if (!isNameValid) return "Name is Invalid :";
   if (!isEmailValid) return "Email is Invalid :";
-  if (!isPasswordValid) return "Password is Invalid :";
+  if (!isMobileValid) return "Mobile number is Invalid :";
 
   return null;
 };

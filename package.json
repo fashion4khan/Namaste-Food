@@ -3,17 +3,22 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "start": "parcel index.html --port 4000",
+    "build": "parcel build index.html --dist-dir build",
     "test": "jest"
   },
   "keywords": [],
   "author": "",
+  "proxy": "https://namastedev.com",
   "license": "ISC",
   "dependencies": {
+    "@firebase/app": "^0.14.3",
+    "@firebase/auth": "^1.11.0",
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/postcss": "^4.1.10",
-    "firebase": "^12.3.0",
+    "axios": "^1.13.2",
+    "babel": "^5.8.38",
+    "firebase": "^9.22.0",
     "parcel": "^2.15.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -23,7 +28,6 @@
     "redux": "^5.0.1",
     "tailwindcss": "^4.1.10"
   },
-  "description": "",
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/preset-env": "^7.28.0",
@@ -32,7 +36,9 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "babel-jest": "^30.0.4",
+    "buffer": "^6.0.3",
     "jest": "^30.0.4",
     "jest-environment-jsdom": "^30.0.4"
-  }
+  },
+  "description": ""
 }

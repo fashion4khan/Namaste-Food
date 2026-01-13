@@ -9,11 +9,27 @@ const useRestaurantMenu = (resId) => {
   }, []);
 
   async function getRestaurantInfo() {
-    const data = await fetch(MENU_API + resId);
+    try {
+      console.log(typeof resId);
+      console.log(MENU_API + resId);
+      const api = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.0446714&lng=73.2910579&restaurantId=8138";
+      const apidata = await fetch(api);
+      console.log(apidata);
+      const data = await fetch(MENU_API + resId);
+      console.log(data);
 
-    const json = await data.json();
+      if (!data.ok) {
+        throw new Error("Network response was not ok: " + data.status);
+      }
 
-    setResInfo(json.data);
+      const text = await data.text();
+      const json = text ? JSON.parse(text) : {};
+
+      console.log(json);
+      setResInfo(json.data || {});
+    } catch (error) {
+      console.error("Error fetching restaurant info:", error);
+    }
   }
 
   return resInfo;

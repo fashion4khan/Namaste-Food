@@ -11,6 +11,7 @@ import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 // import UserContext from "./utils/userContext";
 import { Provider } from "react-redux";
 import AppStore from "./utils/appStore";
+import Login from "./components/login";
 
 const InstaMart = lazy(() => import("./components/grocery"));
 
@@ -62,6 +63,10 @@ const appRouter = createBrowserRouter([
             <InstaMart />
           </Suspense>
         ),
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
     errorElement: <Error />,

@@ -29,7 +29,7 @@ class UserClass extends React.Component {
         {/* <img src={this.state.userInfo.avatar_url}></img> */}
         <h2> Name : {this.state.userInfo.login} </h2>
         <h3> location : {this.state.userInfo.location} </h3>
-        <h4> contact : @FashionDX@8000 </h4>
+        <h4> contact : FashionJust4Food@8000 </h4>
       </div>
     );
   }

@@ -5,7 +5,7 @@ const ResCard = (props) => {
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
     resData?.info;
   return (
-    <div className="m-4 p-4 w-80 rounded-lg">
+    <div className="p-4 w-full sm:w-80 md:w-60 lg:w-80 xl:w-82 rounded-lg shadow-lg bg-white transition-transform hover:scale-105">
       <div className="w-full aspect-[4/3] overflow-hidden rounded-lg">
         <img
           className="w-full h-full object-cover"

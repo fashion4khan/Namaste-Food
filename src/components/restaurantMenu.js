@@ -1,59 +1,39 @@
-import { useState, useEffect } from "react";
-import Shimmer from "./shimmer";
 import { useParams } from "react-router-dom";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
+import Shimmer from "./shimmer";
 import { CDN_URL } from "../utils/constants";
 import RestaurantCategory from "./restaurantCategory";
+import { DUMMY_MENUS } from "../utils/dummyMenus";
+
 const RestaurantMenu = () => {
-  // const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
 
-  const resInfo = useRestaurantMenu(resId);
-  // console.log(resId);
-  // // const params = useParams();
-  // // console.log(params);
-  // useEffect(() => {
-  //   fetchMenu();
-  // }, []);
+  const resInfo = DUMMY_MENUS[resId]?.data;
 
-  // const fetchMenu = async () => {
-  //   const data = await fetch(
-  //     "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.0446525&lng=73.2909312&restaurantId="+resId+"&catalog_qa=undefined&submitAction=ENTER"
-  //   );
+  if (!resInfo) return <h1>Menu Not Found</h1>;
 
-  //   const json = await data.json();
-  //   setResInfo(json.data);
-  //   console.log(json.data);
-  // };
-  if (resInfo === null) {
-    return <Shimmer />;
-  }
   const {
     name,
-    cuisines,
+    cuisines = [],
     costForTwoMessage,
     areaName,
     avgRating,
     totalRatingsString,
-  } = resInfo?.cards?.[2]?.card?.card?.info;
-
-  const itemCards =
-    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
-      ?.card?.itemCards ?? [];
+  } = resInfo?.cards?.[2]?.card?.card?.info || {};
 
   const categories =
-    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
       (c) =>
-        c?.card?.["card"]?.["@type"] ===
+        c?.card?.card?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-    );
-  // console.log(categories);
+    ) || [];
+
   return (
-    <div className="w-6/12 m-auto py-10 mt-24">
-      <h1 className="ml-6 text-3xl font-bold truncate">{name}</h1>
-      <div className="m-4 p-4 border border-solid black 1px rounded-lg shadow-2xl">
+    <div className="w-full md:w-10/12 lg:w-6/12 m-auto py-10 mt-24 px-4 md:px-0">
+      <h1 className="text-2xl md:text-3xl font-bold truncate">{name}</h1>
+
+      <div className="m-4 p-4 border border-gray-300 rounded-lg shadow-md">
         <h3 className="text-lg font-bold">
-          Rating {avgRating}.({totalRatingsString}) - {costForTwoMessage}
+          Rating {avgRating} ({totalRatingsString}) - {costForTwoMessage}
         </h3>
         <p className="text-amber-500 text-lg font-bold">
           {cuisines.join(", ")}
@@ -61,9 +41,11 @@ const RestaurantMenu = () => {
         <span className="font-bold text-lg">Outlet</span>
         <span> - {areaName}</span>
       </div>
-      <div className="flex justify-center">
-        <h2>-- MENU --</h2>
+
+      <div className="flex justify-center my-4">
+        <h2 className="text-xl font-semibold">-- MENU --</h2>
       </div>
+
       {categories.map((category) => (
         <RestaurantCategory
           key={category?.card?.card?.title}

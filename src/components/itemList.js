@@ -32,7 +32,7 @@ const ItemList = ({ items }) => {
                 {" Rs."}{" "}
                 {item.card.info.price / 100 || item.card.info.defaultPrice}
               </h3>
-              <p>{item.card.info.description}</p>
+              {/* <p>{item.card.info.description}</p> */}
             </div>
 
             <div className="relative w-28 h-28 overflow-hidden rounded-lg z-10">
